@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+    <title>Elm - Functional Reactive Programming in the Browser</title>
+
+		<meta name="description" content="An introductory presentation about Elm">
+		<meta name="author" content="Bastian Krol">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    <style>
+
+      .reveal pre {
+        font-size: 0.65em;
+        /* line-height: 1.2em; */
+      }
+
+      /* width: (columns x 80px) - 20px*/
+      .reveal .span1  { width:  60px; }
+      .reveal .span2  { width: 140px; }
+      .reveal .span3  { width: 220px; }
+      .reveal .span4  { width: 300px; }
+      .reveal .span5  { width: 380px; }
+      .reveal .span6  { width: 460px; }
+      .reveal .span7  { width: 540px; }
+      .reveal .span8  { width: 620px; }
+      .reveal .span9  { width: 700px; }
+      .reveal .span10 { width: 780px; }
+      .reveal .span11 { width: 860px; }
+      .reveal .span12 { width: 940px; }
+
+      .reveal .render-target {
+        height: 100px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 3px solid white;
+        text-align: left;
+      }
+
+      .reveal [class*="span"] {
+        float: left;
+        min-height: 1px;
+        margin-left: 20px;
+      }
+
+      h1.banner, h2.banner, h3.banner, h4.banner {
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 1.3em;
+        color: #111;
+      }
+
+      button {
+        margin-top: 21px;
+        width: 150px;
+        height: 2em;
+        font-size: large;
+      }
+
+      .reveal .face {
+        display: block;
+        margin: 5px auto;
+        height: 180px;
+        width: 180px;
+        border: 0 solid white;
+        border-radius: 90px;
+      }
+
+      .reveal .codecentric-logo {
+        height: 2ex;
+        border: 0;
+        margin: 0;
+        background: none;
+        vertical-align: sub;
+      }
+
+      p.attribution {
+        color: black;
+        font-size: 15px;
+      }
+
+      p.attribution.low {
+        margin-top: 250px;
+      }
+
+      p.attribution a {
+        color: black;
+      }
+
+      p.attribution a:hover {
+        color: #333;
+      }
+
+    </style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section data-background="images/wall0.jpg" data-transition="none">
+					<h1>le nouveau Javascript</h1>
+          <h3>Facebook au service<br>de l'open source</h3>
+				</section>
+
+        <section data-background="images/wall0.jpg" data-transition="none">
+          <h2>Qui suis je</h2>
+          <img src="images/tycho.jpg"
+               alt="Tycho 'Salas' Tatitscheff"
+               class="face">
+          <br>
+          <h3>Tycho Tatitscheff</h3>
+          Iresam 212 (2013-2014) <br>
+          <a href="https://twitter.com/tychota"><i class="fa fa-twitter"></i> @tychota</a><br>
+          <a href="https://github.com/tychota"><i class="fa fa-github"></i> tychota</a> <br>
+          <a href="mailto:tycho.tatitscheff@gadz.org"><i class="fa fa-envelope"></i> tycho.tatitscheff@gadz.org</a><br>
+        </section>
+
+        <section data-background="images/wall0.jpg" data-transition="none">
+          <h2>Déroulement de la conf</h2>
+         
+          <h4>Difficultés</h4>
+          <div class="span12">
+            <ul>
+              <li class="fragment">conf claire / simple</li>
+              <li class="fragment">conf avec du contenu</li>
+              <li class="fragment">conf motivante</li>
+            </ul>
+          </div>
+        </section>
+          
+        <section data-background="images/wall0.jpg" data-transition="none">
+          <h2>Déroulement de la conf</h2>
+          
+          <h4>Sujets abordés</h4>
+          <div class="span12">
+            <ul>
+              <li class="fragment">JS en général et ses outils</li>
+              <li class="fragment">React JS</li>
+              <li class="fragment">GraphQL</li>
+            </ul>
+          </div>
+        </section>
+        
+       
+        
+        <!--
+        ========================================================================
+        Javascript
+        ========================================================================
+        -->
+        
+        <section data-background="images/wall1.jpg" data-transition="none">
+          <h1>Partie I : Javascript</h1>
+        </section>
+
+
+				<section data-background="images/wall1.jpg" data-transition="none">
+					<h2>Javascript</h2>
+          
+          <div>A toujours été percu comme :</div>
+          <ul>
+            <li class="fragment">"language pourri"</li>
+            <li class="fragment">"la cause de tous les soucis"</li>
+            <li class="fragment">"trop souple"</li>
+            <li class="fragment">"tueur de chaton"</li>
+          </ul>
+				</section>
+        
+        <section data-background="images/wall1.jpg" data-transition="none">
+					<h2>ES6</h2>
+          <h2 class="banner" style="color: white">Fortement moins pourri !</h2>
+          <div style="height: 600px">
+            <img src="images/es2015.gif">
+          </div>
+				</section>
+        
+        <section data-background="images/wall1.jpg" data-transition="none">
+					<h2>Note importante</h2>
+          <ul>
+            <li class="fragment">Aucun outil n'est obligatoire</li>
+            <li class="fragment">Ne pas en faire trop</li>
+            <li class="fragment">Ne pas optimiser trop tot</li>
+          </ul>
+				</section>
+        
+        <section data-background="images/wall1.jpg" data-transition="none">
+					<h2>Babel</h2>
+          <div style="height: 600px">
+            <img src="images/babel.png">
+          </div>
+				</section>
+        
+        <section data-background="images/wall1.jpg" data-transition="none">
+					<h2>Webpack</h2>
+          <div style="height: 600px">
+            <img src="images/webpack.png">
+          </div>
+				</section>
+        
+        <section data-background="images/wall1.jpg" data-transition="none">
+					<h2>Autres Outils</h2>
+          <h4>Eslint</h4>
+          <div style="height: 600px">
+            <img src="images/eslint.jpg">
+          </div>
+				</section>
+        
+        <section data-background="images/wall1.jpg" data-transition="none">
+					<h2>Autres Outils</h2>
+          <h4>Flowtype</h4>
+          <div style="height: 600px">
+            <img src="images/flow.png">
+          </div>
+				</section>
+
+        <!--
+        ========================================================================
+        EVANGELISM
+        ========================================================================
+        -->
+
+				<section data-background="images/wall2.jpg" data-transition="none">
+					<h1>Partie 2 : React</h1>
+				</section>
+
+				<section data-background="images/wall2.jpg" data-transition="none">
+          <h2>React ...</h2>
+          <ul>
+            <li class="fragment">Syntaxe claire</li>
+            <li class="fragment">Bonne documentation</li>
+            <li class="fragment">Bonne communauté</li>
+            <li class="fragment">Multiplateforme</li>
+            <li class="fragment">Accesible</li>
+          </ul>
+				</section>
+
+        <section data-background="images/bug.jpg" data-transition="none">
+          <h2 class="banner">Reduit le debugage</h2>
+          <p class="attribution low">
+            <a href="https://www.flickr.com/photos/nestorferraro/16904621856/">Bug</a>
+            by <a href="https://www.flickr.com/photos/nestorferraro/">Nestor Ferraro</a> /
+            <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>
+          </p>
+        </section>
+        
+        <section data-background="images/ocean.jpg" data-transition="none">
+          <h2 class="banner">Reduit la complexité mentale</h2>
+          <p class="attribution low">
+            &nbsp;
+          </p>
+        </section>
+        
+        <section data-background="images/carved_in_stone.jpg" data-transition="none"> 
+          <h2 class="banner">Facilite la maintenabilté</h2>
+          <p class="attribution low">
+            <a href="https://www.flickr.com/photos/gingerfox/8262755220/">Carved Stone"</a>
+            by <a href="https://www.flickr.com/photos/gingerfox/">Kit Carruthers</a> /
+            <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC BY 2.0</a>
+          </p>
+
+        </section>
+
+        
+        <section data-background="images/speed.jpg" data-transition="none">
+          <h2 class="banner">Est Rapide</h2>
+          <p class="attribution low">
+            <a href="https://www.flickr.com/photos/17612257@N00/4639794109/in/photolist-9HPzBL-8U28ub-851a9a-5LRAHV-diiyTv-qXypo8-eiT2V9-8izcAE-5akVhi-7sej22-217Uj-9TovPT-4rCBas-ecu7JY-4xNYKx-9rAxzT-4DCfZp-87uhSr-5ujiBB-cXs2n-cn8Mu-Fppkv-8j2FPs-6Snb1-qa2Uoo-4FEQ1Q-4xTcMs-3rThWk-6aRnQN-5Q9znQ-3acUTk-6dFaYQ-qs68e8-jWXejG-5jsdCA-a9LNWL-7GNCNM-4Yc4oz-7U9dwD-oYB2Qr-qZeaTJ-7RpbYy-9tmFyT-8H9fpY-PXPwK-9XL6o6-9y31bz-nTzpDA-cg3b9b-6UkbGF">Speed</a>
+            by <a href="https://www.flickr.com/photos/17612257@N00/">snapp3r</a> /
+            <a href="https://creativecommons.org/licenses/by-nd/2.0/">CC BY-ND 2.0</a>
+          </p>
+
+        </section>
+
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+          <h2>Tout est composant</h2>
+          <div style="height: 600px">
+            <img src="images/react.png">
+          </div>
+        </section>
+        
+				<section  data-background="images/wall2.jpg" data-transition="none">
+					<h2>Un composant</h2>
+          <div class="span12">
+            <pre style="background-color: rgba(45, 46, 51, 0.43)"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"> </span></span></span></span></span></span><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title">Hello</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"> </span></span></span></span></span></span><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-class"><span class="hljs-keyword"><span class="hljs-keyword">extends</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"> </span></span></span></span></span></span><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title">React</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class">.</span></span></span></span></span></span><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title"><span class="hljs-class"><span class="hljs-title">Component</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"><span class="hljs-class"> {</span></span></span></span></span></span></span>
+  render() {
+    <span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">return</span></span></span></span></span></span></span> &lt;div&gt;<span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type">Hello</span></span></span></span></span></span></span> {<span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword"><span class="hljs-keyword">this</span></span></span></span></span></span></span>.props.name}&lt;/div&gt;;
+  }
+}
+
+<span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type">ReactDOM</span></span></span></span></span></span></span>.render(&lt;<span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type">Hello</span></span></span></span> name=<span class="hljs-string"><span class="hljs-string"><span class="hljs-string"><span class="hljs-string"><span class="hljs-string"><span class="hljs-string"><span class="hljs-string">"Sebastian"</span></span></span></span></span></span></span>&gt; &lt;/<span class="hljs-type"><span class="hljs-type"><span class="hljs-type"><span class="hljs-type">Hello</span></span></span></span>&gt;, ..);
+</pre>
+          </div>
+
+				</section>
+        
+        <section data-background="images/wall2.jpg" data-transition="none">
+          <h2>Demo</h2>
+         
+        </section>
+        
+        <section data-background="images/wall2.jpg" data-transition="none">
+          <h2>Multi plateformes</h2>
+          <ul>
+            <li class="fragment">Web</li>
+            <li class="fragment">Mobile Natif</li>
+            <li class="fragment">Desktop app</li>
+          </ul>
+        </section>
+
+
+
+        <!--
+        ========================================================================
+        SYNTAX BASICS
+        ========================================================================
+        -->
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+          <h1>Partie III <br> GraphQL / Relay</h1>
+        </section>
+
+				<section data-background="images/wall3.jpg" data-transition="none">
+					<h2>Context :  Rest</h2>
+          <div style="height: 600px">
+            <img src="images/relay-4.png">
+          </div>
+				</section>
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>Context :  Rest</h2>
+          <ul class>
+            <li class="fragment">n'a pas de <strong style="color: #FFEC8F">spécification</strong> (norme)</li>
+            <li class="fragment">effectue <strong style="color: #FFEC8F">plusieurs requètes</strong></li>
+            <li class="fragment">recupère <strong style="color: #FFEC8F">trop d'information</strong></li>
+            <li class="fragment">ne fournit pas d'information <strong style="color: #FFEC8F">d'introspection</strong></li>
+            <li class="fragment">ne fournit pas de <strong style="color: #FFEC8F">documentation de l'API</strong></li>
+            <li class="fragment">ne fournit pas de réelle facon de <strong style="color: #FFEC8F">versionner l'API</strong></li>
+            <li class="fragment">est <strong style="color: #FFEC8F">couplé à des ressources</strong> (DB)</li>
+          </ul>
+				</section>
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>GraphQL</h2>
+          <div style="height: 600px">
+            <img src="images/relay-5.png">
+          </div>
+				</section>
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>GraphQL</h2>
+          <ul class>
+            <li class="fragment">est une <strong style="color: #FFEC8F">spécification</strong></li>
+            <li class="fragment">effectue <strong style="color: #FFEC8F">une requète</strong></li>
+            <li class="fragment">recupère <strong style="color: #FFEC8F">seulement le necesssaire</strong></li>
+            <li class="fragment">fourni une <strong style="color: #FFEC8F">introspection (GraphiQl)</strong></li>
+            <li class="fragment">fournit de <strong style="color: #FFEC8F">documentation de l'API</strong></li>
+            <li class="fragment">fournit une <strong style="color: #FFEC8F">réelle facon de versionner l'API</strong></li>
+            <li class="fragment">est couplé à <strong style="color: #FFEC8F">système de type (DB ou service ou fonction)</strong></li>
+          </ul>
+				</section>
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>GraphQL</h2>
+          <div style="height: 600px">
+            <img src="images/relay-5.png">
+          </div>
+				</section>
+       
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>GraphQL</h2>
+          <h4>Architecture interne</h4>
+          <div style="height: 600px">
+            <img src="images/relay-7.png"  style="height: 400px">
+          </div>
+				</section>
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>GraphQL</h2>
+          <h4>Query</h4>
+          <div style="height: 600px">
+            <img src="images/graph-query.jpg">
+          </div>
+				</section>
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>GraphQL</h2>
+          <h4>3 types d'accès</h4>
+          <ul class>
+            <li class="fragment">query</li>
+            <li class="fragment">mutation</li>
+            <li class="fragment">souscription (WIP)</li>
+          </ul>
+				</section>
+        
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>GraphQL</h2>
+          <h4>Type système</h4>
+          <div style="height: 400px">
+            <img src="images/graphql-schema.png">
+          </div>
+				</section>
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>GraphQL</h2>
+          <h4>Type système</h4>
+          <div style="height: 400px">
+            <img src="images/graphql-schema2.png">
+          </div>
+				</section>
+        
+        <section data-background="images/wall3.jpg" data-transition="none">
+					<h2>DEMOS</h2>
+          <h4>Query</h4>
+          <ul>
+            <li>Intropection: <a href="http://goo.gl/egFNWd">http://goo.gl/egFNWd</a></li>
+            <li>Film : <a href="http://goo.gl/kDfqKT">http://goo.gl/kDfqKT</a></li>
+            <li>AllFilms : <a href="http://goo.gl/xZJVlc">http://goo.gl/xZJVlc</a></li>
+            <li>AllFilms (2): <a href="http://goo.gl/au54zi">http://goo.gl/au54zi</a></li>
+          </ul>
+          <h4 style="padding-top: 25px">Mutation</h4>
+          <ul>
+            <li>Authentification: <a href="https://goo.gl/qoPSYz">https://goo.gl/qoPSYz</a></li>
+            <li>Création Auth : <a href="https://goo.gl/2VCS9m">https://goo.gl/2VCS9m</a></li>
+            <li>Login : <a href="https://goo.gl/KY5khQ">https://goo.gl/KY5khQ</a></li>
+          </ul>
+        </section>
+        
+        <section  data-background="images/wall0.jpg" data-transition="none">
+          <h1>Conclusion</h1>
+        </section>
+        
+        <section  data-background="images/wall0.jpg" data-transition="none">
+          <h2>Apprentisage</h2>
+          <h4 class="banner" style="color: white">Egghead.io, c'est ouf !!</h4>
+           <div style="height: 400px">
+            <img src="images/egghead.png">
+          </div>
+        </section>
+
+        <section  data-background="images/wall0.jpg" data-transition="none">
+          <h2>Questions?</h2>
+          <h2>Merci!</h2>
+
+          <hr>
+
+          <a href="https://twitter.com/tychota"><i class="fa fa-twitter"></i> @tychota</a><br>
+          <a href="https://github.com/tychota"><i class="fa fa-github"></i> tychota</a> <br>
+          <a href="mailto:tycho.tatitscheff@gadz.org"><i class="fa fa-envelope"></i> tycho.tatitscheff@gadz.org</a><br>
+        </section>
+
+        <!--
+        TODO:
+        - Mention Side Effects <-> Tasks?
+        -->
+
+      </div> <!-- .slides -->
+    </div> <!-- .reveal -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+    <!-- Embed Elm examples into HTML -->
+    <script src="elm-examples.js"></script>
+    <script type="text/javascript">
+
+      function pad2(num) {
+        var s = '0' + num;
+        return s.substr(s.length - 2);
+      }
+
+      var div;
+      var module;
+      for (var i = 1; i <= 99; i++) {
+        var num = pad2(i);
+        div = document.getElementById('elm-example-' + num);
+        module = Elm['Example' + num];
+        if (div && module) {
+          Elm.embed(Elm['Example' + num], div);
+          console.log('Embedded Elm module Example' + num);
+        } else if (div) {
+          console.warn('There is a div for Example' + num + ' but no matching Elm module.');
+        } else if (module) {
+          console.warn('There is an Elm module Example' + num + ' but no matching div.');
+        }
+      }
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+    </script>
+	</body>
+</html>
