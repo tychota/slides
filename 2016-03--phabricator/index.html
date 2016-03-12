@@ -428,33 +428,5 @@
 			});
 
 		</script>
-
-    <!-- Embed Elm examples into HTML -->
-    <script src="elm-examples.js"></script>
-    <script type="text/javascript">
-
-      function pad2(num) {
-        var s = '0' + num;
-        return s.substr(s.length - 2);
-      }
-
-      var div;
-      var module;
-      for (var i = 1; i <= 99; i++) {
-        var num = pad2(i);
-        div = document.getElementById('elm-example-' + num);
-        module = Elm['Example' + num];
-        if (div && module) {
-          Elm.embed(Elm['Example' + num], div);
-          console.log('Embedded Elm module Example' + num);
-        } else if (div) {
-          console.warn('There is a div for Example' + num + ' but no matching Elm module.');
-        } else if (module) {
-          console.warn('There is an Elm module Example' + num + ' but no matching div.');
-        }
-      }
-
-			<!-- Any section element inside of this container is displayed as a slide -->
-    </script>
 	</body>
 </html>
