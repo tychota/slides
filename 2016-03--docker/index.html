@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+    <title>Docker</title>
+
+		<meta name="description" content="The new revolution">
+		<meta name="author" content="Tycho Tatitscheff">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    <style>
+
+      .reveal pre {
+        font-size: 0.55em;
+        /* line-height: 1.2em; */
+      }
+
+      /* width: (columns x 80px) - 20px*/
+      .reveal .span1  { width:  60px; }
+      .reveal .span2  { width: 140px; }
+      .reveal .span3  { width: 220px; }
+      .reveal .span4  { width: 300px; }
+      .reveal .span5  { width: 380px; }
+      .reveal .span6  { width: 460px; }
+      .reveal .span7  { width: 540px; }
+      .reveal .span8  { width: 620px; }
+      .reveal .span9  { width: 700px; }
+      .reveal .span10 { width: 780px; }
+      .reveal .span11 { width: 860px; }
+      .reveal .span12 { width: 940px; }
+
+      .reveal .render-target {
+        height: 100px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 3px solid white;
+        text-align: left;
+      }
+
+      .reveal [class*="span"] {
+        float: left;
+        min-height: 1px;
+        margin-left: 20px;
+      }
+
+      h1.banner, h2.banner, h3.banner, h4.banner {
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 1.3em;
+        color: #111;
+      }
+
+      button {
+        margin-top: 21px;
+        width: 150px;
+        height: 2em;
+        font-size: large;
+      }
+
+      .reveal .face {
+        display: block;
+        margin: 5px auto;
+        height: 180px;
+        width: 180px;
+        border: 0 solid white;
+        border-radius: 90px;
+      }
+
+      .reveal .codecentric-logo {
+        height: 2ex;
+        border: 0;
+        margin: 0;
+        background: none;
+        vertical-align: sub;
+      }
+
+      p.attribution {
+        color: black;
+        font-size: 15px;
+      }
+
+      p.attribution.low {
+        margin-top: 250px;
+      }
+
+      p.attribution a {
+        color: black;
+      }
+
+      p.attribution a:hover {
+        color: #333;
+      }
+
+      .reveal pre code {
+          max-height: 100%;
+      }
+
+      .overimage-title {
+          background-color: rgba(255, 255, 255, 0.7);
+          border-radius: 5px;
+          border: 3px solid #2b3e4f;
+      }
+      .overimage-title  h1,
+      .overimage-title h2,
+      .overimage-title h3,
+      .overimage-title  h4 {
+          color: #2b3e4f;
+      }
+
+      .emph {
+            color: #68152e;
+      }
+
+      .reveal h1 small, .reveal h2 small, .reveal h3 small {
+          display: block;
+      }
+
+    </style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section data-background="images/wall2.jpg" data-transition="none">
+					<h1>Docker</h1>
+
+                    <div style="position: relative; bottom: -100px; font-size: 25px;">
+                        <p style="text-align: left; float: left;">Durée : ~30min</p>
+                        <p style="text-align: right; float: right;">Vous pouvez poser des questions à tout moment ! </p>
+                    </div>
+				</section>
+
+        <!--
+        ========================================================================
+        Partie 1
+        ========================================================================
+        -->
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+					<h1>Que-'est ce que c'est ?</h1>
+				</section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+          <h1>Comment ça marche ?</h1>
+				</section>
+
+				<section data-background="images/wall2.jpg" data-transition="none">
+          <h2>VM / Container</h2>
+          <div class="span6 fragments" style="display: flex;height: 40vh;align-items: flex-end;">
+            <img src="images/VM.png">
+          </div>
+          <div class="span6 fragments" style="display: flex;height: 40vh;align-items: flex-end;">
+            <img src="images/container.png">
+          </div>
+				</section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+          <h2>Noyau linux</h2>
+        </section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+          <h2>Système par couches</h2>
+          <div>
+            <img src="images/layer.png">
+          </div>
+        </section>
+
+        <section data-background="images/wall1.jpg" data-transition="none">
+          <h1>Pour</h1>
+        </section>
+
+        <section data-background="images/wall1.jpg" data-transition="none">
+          <h2>
+            Force à découper en plusieurs containeurs
+          </h2>
+          <h3>Plus simple d'augmenter en taille</h3>
+				</section>
+
+        <section data-background="images/wall1.jpg" data-transition="none">
+          <h2>
+            Code et envionnement versionnés ensemble
+          </h2>
+          <h3> Donc rollback facile</h3>
+				</section>
+
+        <section data-background="images/wall1.jpg" data-transition="none">
+          <h2>
+            Environnement ISO car tout est écrit
+          </h2>
+				</section>
+
+        <section data-background="images/wall1.jpg" data-transition="none">
+          <h2>
+            Pas de surprise liée au cache
+          </h2>
+				</section>
+
+        <section data-background="images/wall0.jpg" data-transition="none">
+          <h1> Contre </h1>
+				</section>
+
+        <section data-background="images/wall0.jpg" data-transition="none">
+          <h2>
+            Recrée à chaque fois
+          </h2>
+				</section>
+
+        <section data-background="images/wall0.jpg" data-transition="none">
+          <h2>
+            L'architecture par couches peut rendre les changements longs
+          </h2>
+				</section>
+
+        <!--
+        ========================================================================
+        Partie 3
+        ========================================================================
+        -->
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <h1>Utilisation Basique</h1>
+        </section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <img src="images/docker-all-the-things.png" width="500" />
+        </section>
+
+        <section  data-background="images/wall2.jpg" data-transition="none">
+            <h2>Créer un Dockerfile</h2>
+            <pre><code class"Dockerfile">
+FROM ubuntu:14.04
+MAINTAINER Nicolas Djambazian
+
+# install node
+RUN apt-get update && apt-get install -y nodejs npm
+
+COPY back/package.json /src/package.json
+RUN cd /src; npm install --production
+
+# Bundle app source
+COPY back/ /src
+
+EXPOSE 80
+ENV APP_PORT 80
+
+CMD ["nodejs", "/src/index.js"]
+            </code></pre>
+        </section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <h3>Et c'est parti !</h3>
+
+            <pre><code class"bash">
+docker build -t username/my-app .
+docker run -p 3000:80 -d username/my-app
+            </code></pre>
+
+            <p>Sur MacOS, docker tourne dans une machine virtuelle</p>
+            <pre><code class"bash">
+$ docker-machine ls
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
+default   *        virtualbox   Running   tcp://192.168.99.100:2376           v1.10.3
+$ curl 192.168.99.100:3000
+Hello World!
+            </code></pre>
+        </section>
+
+        <section  data-background="images/wall2.jpg" data-transition="none">
+            <p>Docker garde un cache et reconstruit tout depuis le dernier changement.</p>
+            <p>D'où :</p>
+            <pre><code class"Dockerfile">
+RUN apt-get update && apt-get install -y nodejs npm
+            </code></pre>
+            <p>Et </p>
+            <pre><code class"Dockerfile">
+COPY back/package.json /src/package.json
+RUN cd /src; npm install --production
+
+# Bundle app source
+COPY back/ /src
+            </code></pre>
+        </section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <h3>Tant qu'à faire, on réutilise l'existant</h3>
+            <pre><code class"Dockerfile">
+FROM node:4
+MAINTAINER Nicolas Djambazian
+
+# no node install
+            </code></pre>
+        </section>
+
+        <section data-background="images/eniac.jpg" data-transition="none">
+
+            <div class="overimage-title">
+                <h2>
+                    En <span class="emph">docker</span>, on ne fait pas de grosse <span class="emph">machine</span>
+                    <small>On découpe</small>
+                </h2>
+            </div>
+
+        </section>
+
+
+        <section  data-background="images/wall2.jpg" data-transition="none">
+            <h3>Ajout d'une BDD avec docker-compose</h3>
+
+            <pre><code class"yaml">
+# docker-compose.yml
+back:
+    build: .
+    volumes:
+            - "./back/:/src"
+    ports:
+            - "3000:80"
+    links:
+            - db
+
+db:
+    image: mysql:5.7
+    ports:
+        - "3306:3306"
+    environment:
+            - "MYSQL_ROOT_PASSWORD=rootPassword"
+            - "MYSQL_USER=user"
+            - "MYSQL_PASSWORD=pass"
+            - "MYSQL_DATABASE=database"
+            </code></pre>
+        </section>
+
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <p>Utilisations :</p>
+
+            <pre><code class"js">
+"mysql://user:pass@db:3306/database"
+            </code></pre>
+
+            <p>Rappel :</p>
+            <pre><code class"yaml">
+# docker-compose.yml
+back:
+    build: .
+    links:
+            - db
+
+db:
+    image: mysql:5.7
+    ports:
+        - "3306:3306"
+            </code></pre>
+        </section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <h1>Astuces pratiques</h1>
+        </section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <h2>Gestion des sources</h2>
+
+            <p>Dans le même Dossier/repo (<code class="bash">git submodule</code> éventuellement)</p>
+
+            <p>On deversionne le docker-compose.yml (docker-compose.yml.dist) pour pouvoir le personnaliser</p>
+        </section>
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <h3>Sync des sources en continue</h3>
+            <pre><code class"yaml">
+# docker-compose.yml
+back:
+    build: .
+    volumes:
+            - "./back/:/src"
+            </pre></code>
+
+            Ou
+            <pre><code class"yaml">
+# docker-compose.yml
+back:
+    build: .
+    volumes:
+            - "../moBackDanUnAutreRepo/:/src"
+            </pre></code>
+
+        </section>
+
+        <section data-background="images/wall2.jpg" data-transition="none">
+            <h3>Gestion des logs/uploads/cache</h3>
+
+            <p>Pour pas tout perdre à chaque build</p>
+            <pre><code class"Dockerfile">
+VOLUME /var/log /src/cache
+            </code></pre>
+
+            <p>Pour les consulter sans se connecter au container</p>
+            <pre><code class"yaml">
+# docker-compose.yml
+back:
+    build: .
+    volumes:
+            - "logs/:/var/log"
+            </pre></code>
+        </section>
+
+        <section data-background="images/ship.jpg" data-transition="none">
+            <h1>Manipulation des Container</h1>
+        </section>
+
+        <section  data-background="images/wall2.jpg" data-transition="none">
+            <h2>Image vs Container</h2>
+
+            <p>Image : System buildé et configuré n'ayant jamais tourné</p>
+
+            <p>Container : Instance d'une image ayant tournée / en fonctionnement</p>
+        </section>
+
+        <section  data-background="images/wall2.jpg" data-transition="none">
+            <h2>Commandes basiques</h2>
+
+            <table>
+                <tr><td>Container actifs</td><td><code>docker ps</code></td></tr>
+                <tr><td>Tous les container</td><td><code>docker ps -a</code></td></tr>
+                <tr><td>Images</td><td><code>docker images</code></td></tr>
+                <tr><td>Supprimer un container</td><td><code>docker rm</code></td></tr>
+                <tr><td>Supprimer une images</td><td><code>docker rmi</code></td></tr>
+                <tr><td>Lancer une commande dans une image</td><td><code>docker run --rm -it ImageName "command"</code></td></tr>
+                <tr><td>Lancer une commande dans un container actif</td><td><code>docker exec -it ContainerName "command"</code></td></tr>
+            </table>
+        </section>
+
+
+        <section  data-background="images/wall2.jpg" data-transition="none">
+            <h2>Déploiement</h2>
+
+            <div style="display: flex">
+                <div style="margin: 0 40px">
+                    Docker-compose special pour la prod :
+                    <ul>
+                        <li>Pas de Volume</li>
+                        <li>Specifier les ports/env</li>
+                        <li>Ajouter des services pour les logs, ...</li>
+                        <li>Relancer le container au démarage : <code>restart: always</code></li>
+                    </ul>
+                </div>
+
+                <div style="margin: 0 40px">
+                    <img src="images/deploy.gif" />
+                </div>
+            </div>
+
+            Puis, pour relancer back :
+            <pre><code class"bash">
+$ git pull
+$ docker-compose build back
+$ docker-compose up --no-deps -d back
+            </code></pre>
+        </section>
+
+        <section  data-background="images/wall2.jpg" data-transition="none">
+            <h2>Merci!</h2>
+            <h2>Des <span class="emph">questions</span> ou des <br /><span class="emph">retours</span> d'expérience ?</h2>
+
+            <p>Slides : <a href="https://github.com/tychota/conf-docker-bam">https://github.com/tychota/conf-docker-bam</a></p>
+            <p>Repository : <a href="https://github.com/bamlab/docker-demo">https://github.com/bamlab/docker-demo</a></p>
+        </section>
+
+      </div> <!-- .slides -->
+    </div> <!-- .reveal -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+	</body>
+</html>
