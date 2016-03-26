@@ -187,43 +187,50 @@
 
         <section data-background="images/wall2.jpg" data-transition="none">
           <h2>Noyau linux</h2>
+          <p>Utilise les cgroups du noyau linux.</p>
         </section>
 
         <section data-background="images/wall2.jpg" data-transition="none">
-          <h2>Système par couches</h2>
+          <h2>Système de fichiers par couches</h2>
           <div>
             <img src="images/layer.png">
           </div>
+          <p>On stoque les modifications entre deux images</p>
+          <p>Héritage !</p>
         </section>
 
         <section data-background="images/wall1.jpg" data-transition="none">
-          <h1>Pour</h1>
+          <h1>
+            Avantages en comparaison avec vagrant + ansible
+          </h1>
         </section>
 
         <section data-background="images/wall1.jpg" data-transition="none">
           <h2>
             Force à découper en plusieurs containeurs
           </h2>
-          <h3>Plus simple d'augmenter en taille</h3>
+          <p>Plus simple d'augmenter en taille</p>
 				</section>
 
         <section data-background="images/wall1.jpg" data-transition="none">
           <h2>
             Code et envionnement versionnés ensemble
           </h2>
-          <h3> Donc rollback facile</h3>
+          <p> Donc rollback (revenir à la version précedente) facile</p>
 				</section>
 
         <section data-background="images/wall1.jpg" data-transition="none">
           <h2>
             Environnement ISO car tout est écrit
           </h2>
+          Pas de modification manuelle
 				</section>
 
         <section data-background="images/wall1.jpg" data-transition="none">
           <h2>
             Pas de surprise liée au cache
           </h2>
+          Tout est toujours recrée.
 				</section>
 
         <section data-background="images/wall0.jpg" data-transition="none">
@@ -234,12 +241,7 @@
           <h2>
             Recrée à chaque fois
           </h2>
-				</section>
-
-        <section data-background="images/wall0.jpg" data-transition="none">
-          <h2>
-            L'architecture par couches peut rendre les changements longs
-          </h2>
+          <p>Donc c'est lent</p>
 				</section>
 
         <!--
@@ -414,10 +416,20 @@ back:
             </pre></code>
 
         </section>
+        
+         <section data-background="images/wall2.jpg" data-transition="none">
+            <h3>Affichage de la sortie standard</h3>
+            <pre><code class"bash">
+docker logs
+            </code></pre>
+            <pre><code class"bash">
+docker-compose logs
+            </code></pre>
+        </section>
 
         <section data-background="images/wall2.jpg" data-transition="none">
             <h3>Gestion des logs/uploads/cache</h3>
-
+            
             <p>Pour pas tout perdre à chaque build</p>
             <pre><code class"Dockerfile">
 VOLUME /var/log /src/cache
@@ -434,7 +446,7 @@ back:
         </section>
 
         <section data-background="images/ship.jpg" data-transition="none">
-            <h1>Manipulation des Container</h1>
+            <h1>Manipulation des containerx</h1>
         </section>
 
         <section  data-background="images/wall2.jpg" data-transition="none">
@@ -491,7 +503,7 @@ $ docker-compose up --no-deps -d back
             <h2>Merci!</h2>
             <h2>Des <span class="emph">questions</span> ou des <br /><span class="emph">retours</span> d'expérience ?</h2>
 
-            <p>Slides : <a href="https://github.com/tychota/conf-docker-bam">https://github.com/tychota/conf-docker-bam</a></p>
+            <p>Slides : <a href="https://github.com/tychota/conf-docker-bam">https://github.com/tychota/slides/tree/master/2016-03--docker</a></p>
             <p>Repository : <a href="https://github.com/bamlab/docker-demo">https://github.com/bamlab/docker-demo</a></p>
         </section>
 
